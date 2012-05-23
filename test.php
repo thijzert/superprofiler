@@ -21,15 +21,18 @@
 
 require_once( "profiler.inc" );
 
-header( "Content-type: text/plain" );
+section(2);
 
 
-print( "This is a page with simulated load for the profiler.\n" .
-	"The data you see is random.\n\n" );
+?>
+<p>This is a page with simulated load for the profiler.
+	The data you see is random.</p>
 
-section(1);
 
-print( "\n" . Profiler::output() . "\n\n" );
+<iframe src="view/profiler.html#<?=htmlspecialchars(Profiler::output())?>" 
+	style="width: 100%; height: 100%;" />
+
+<?php
 
 
 
