@@ -1,13 +1,37 @@
 <!DOCTYPE html>
+<!--
+	Copyright (C) 2012 Thijs van Dijk
+	
+	This file is part of Superprofiler.
+
+	Superprofiler is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Superprofiler is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <html>
 	<head>
 		<title>Profiler information</title>
+		
+		<link rel="stylesheet" href="css/jquery-ui.css" />
 	</head>
 	<body>
 		<pre id="out"></pre>
 		
+		<div id="tabs"></div>
+		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 		<script src="profiler.js"></script>
 		
+		<script src="tabs/object-browser.js"></script>
 	</body>
 </html>
