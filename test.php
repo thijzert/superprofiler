@@ -67,7 +67,7 @@ function section( $countdown )
 		}
 		else
 		{
-			$act = round(log(mt_rand(1,exp(7))));
+			$act = round(sqrt(mt_rand(0, 7.495*7.495)));
 			
 			Profiler::start( $activities[$act] );
 			
