@@ -38,6 +38,29 @@ Profiler.tabs.push({
 			return ( 1 - scale ) + ( scale * perc * perc );
 		};
 		
+		var format_duration = function( sec )
+		{
+			if ( sec < 0 )
+				return "This took " + sec + " seconds for some reason.";
+			
+			if ( sec > 3600 )
+				return Math.floor(sec / 3600) + "h" +
+					Math.floor((sec % 3600)/60) + "m";
+			if ( sec > 60 )
+				return Math.floor(sec / 60) + "m" +
+					Math.floor(sec % 60) + "s";
+			if ( sec > 5 )
+				return sec.toFixed( 1 ) + "s";
+			if ( sec > 0.5 )
+				return sec.toFixed( 3 ) + "s";
+			if ( sec > 0.0005 )
+				return (sec * 1000).toFixed( 3 ) + "ms";
+			
+			if ( sec > 0.00005 )
+				return Math.round(sec * 1000000) + "µs";
+			return (sec * 1000000).toFixed( 3 ) + "µs";
+		};
+		
 		var duration_box = function( out, inp )
 		{
 			var start = inp.start;
@@ -62,7 +85,7 @@ Profiler.tabs.push({
 							.html(start))
 					.append($("<span></span>")
 						.addClass("duration")
-						.html(duration)
+						.html( format_duration( duration ) )
 						.css({ 'opacity': opacity })
 						.toggleClass('warning', ( inp.duration_percentile > 0.8 )))
 					.append( erb ) );
