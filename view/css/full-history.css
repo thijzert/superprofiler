@@ -24,10 +24,11 @@
 {
 	margin-left: 5px;
 	border-left: 2px solid #BBBBBB;
-	padding-left: 5px;
+	padding-left: 9px;
 	
 	background-color: white;
 }
+#full-history > ul { border-left: none; }
 #full-history ul, #full-history li
 {
 	clear: both;

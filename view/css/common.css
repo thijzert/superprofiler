@@ -21,5 +21,11 @@ body
 {
 	background-color: white;
 	margin: 30px 50px 20px 50px;
-	padding: 10px 5px;
+	/*min-height: 100px;*/
+}
+
+#wrapper > h1
+{
+	font-size: 18px;
+	padding: 10px 15px 20px 15px;
 }

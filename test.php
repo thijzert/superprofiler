@@ -21,7 +21,7 @@
 
 require_once( "profiler.inc" );
 
-section(6);
+section( is_numeric($_REQUEST['sections']) ? $_REQUEST['sections'] : 6 );
 
 $op = Profiler::output();
 $link = "view/profiler.html#" . $op;
