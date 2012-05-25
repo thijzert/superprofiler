@@ -27,6 +27,11 @@ Profiler.tabs.push({
 	"id":    "full-history",
 	"renderer": (function(){
 		
+		
+		// Flag items that have a higher duration percentile than this
+		var flag_from_percentile = 0.97;
+		
+		
 		var perc_opacity = function( perc, scale )
 		{
 			if ( typeof(perc) == 'undefined' ) return 0.8;
@@ -87,7 +92,8 @@ Profiler.tabs.push({
 						.addClass("duration")
 						.html( format_duration( duration ) )
 						.css({ 'opacity': opacity })
-						.toggleClass('warning', ( inp.duration_percentile > 0.8 )))
+						.toggleClass('warning', 
+							( inp.duration_percentile > flag_from_percentile )))
 					.append( erb ) );
 		};
 		
