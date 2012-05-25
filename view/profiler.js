@@ -26,8 +26,11 @@ var Profiler = (function(){
 	
 	var render_profiler = function( profiler_output )
 	{
-		profiler_output = JSON.parse( profiler_output );
-		if ( typeof(profiler_output) != 'object' ) return;
+		try
+		{
+			profiler_output = JSON.parse( profiler_output );
+		}
+		catch (e) { return; }
 		
 		// Apply all filters to the profiler output
 		for ( var i = 0; i < render_profiler.filters.length; i++ )
