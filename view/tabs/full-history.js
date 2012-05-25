@@ -27,8 +27,13 @@ Profiler.tabs.push({
 	"id":    "full-history",
 	"renderer": (function(){
 		
-		var duration_box = function( out, start, duration, error )
+		var duration_box = function( out, inp )
 		{
+			var start = inp.start;
+			var duration = inp.dur;
+			var error = inp.error;
+			
+			
 			var erb = $("<span></span>")
 				.addClass("error")
 				.html(error);
@@ -60,7 +65,7 @@ Profiler.tabs.push({
 				}
 				else
 				{
-					duration_box( out, inp.start, inp.dur, null);
+					duration_box( out, inp );
 					out.append( "Begin section <strong>" + inp.name + "</strong>" );
 				}
 				
@@ -92,7 +97,7 @@ Profiler.tabs.push({
 			}
 			else
 			{
-				duration_box( out, inp.start, inp.dur, inp.error );
+				duration_box( out, inp );
 				
 				out.addClass( inp.name );
 				out.append($('<p></p>').text(inp.name));
