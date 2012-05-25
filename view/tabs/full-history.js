@@ -82,12 +82,15 @@ Profiler.tabs.push({
 				out.append(ul);
 				
 				if ( !root )
+				{
 					out.click(function(){
 						ul.toggle( 200 );
 						out.toggleClass( "collapsed" );
 						
 						return false;
 					});
+					ul.click(function(){return false;})
+				}
 				
 				if ( root )
 					out.append( "Total time: <strong>" + inp.dur + "</strong>" );
