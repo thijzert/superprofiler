@@ -69,6 +69,18 @@
 #full-history .durationbox span.duration { min-width: 60px; }
 #full-history .durationbox span.error    { min-width: 16px; padding: 2px; }
 
+#full-history .durationbox span.warning
+{
+	background-color: #BF0000;
+	color: white;
+	font-weight: bold;
+	
+	padding-top: 5px;
+	margin-top: -5px;
+	padding-bottom: 5px;
+	margin-bottom: -5px;
+}
+
 
 #full-history li.fs     { background-color: #4D6ECF; }
 #full-history li.net    { background-color: #5ACF4D; }

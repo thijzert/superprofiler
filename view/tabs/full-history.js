@@ -27,19 +27,31 @@ Profiler.tabs.push({
 	"id":    "full-history",
 	"renderer": (function(){
 		
+		var perc_opacity = function( perc, scale )
+		{
+			if ( typeof(perc) == 'undefined' ) return 0.8;
+			if ( typeof(scale) == 'undefined' ) scale = 0.6;
+			
+			if ( perc < 0 ) perc = 0;
+			if ( perc > 1 ) perc = 1;
+			
+			return ( 1 - scale ) + ( scale * perc * perc );
+		};
+		
 		var duration_box = function( out, inp )
 		{
 			var start = inp.start;
 			var duration = inp.dur;
 			var error = inp.error;
 			
+			var opacity = perc_opacity( inp.duration_percentile, 0.8 );
 			
 			var erb = $("<span></span>")
 				.addClass("error")
 				.html(error);
 			
 			if ( error )
-				erb.addClass( "yarly" )
+				erb.addClass( "yarly" );
 			
 			out.append( 
 				$("<div></div>")
@@ -48,10 +60,11 @@ Profiler.tabs.push({
 						$("<span></span>")
 							.addClass("start")
 							.html(start))
-					.append(
-						$("<span></span>")
-							.addClass("duration")
-							.html(duration))
+					.append($("<span></span>")
+						.addClass("duration")
+						.html(duration)
+						.css({ 'opacity': opacity })
+						.toggleClass('warning', ( inp.duration_percentile > 0.8 )))
 					.append( erb ) );
 		};
 		
@@ -103,6 +116,9 @@ Profiler.tabs.push({
 				duration_box( out, inp );
 				
 				out.addClass( inp.name );
+				// var opacity = perc_opacity( inp.duration_percentile, 0.4 );
+				// out.css({ 'opacity': opacity });
+				
 				out.append($('<p></p>').text(inp.name));
 				
 				if ( inp.notes )
