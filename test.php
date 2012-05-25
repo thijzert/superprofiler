@@ -21,16 +21,19 @@
 
 require_once( "profiler.inc" );
 
-section(2);
+section(5);
 
+$op = Profiler::output();
+$link = "view/profiler.html#" . $op;
+$href = htmlspecialchars($link);
 
 ?>
 <p>This is a page with simulated load for the profiler.
 	The data you see is random.</p>
 
+<p><a href="<?=$href?>">Click here to open the profiler</a></p>
 
-<iframe src="view/profiler.html#<?=htmlspecialchars(Profiler::output())?>" 
-	style="width: 100%; height: 100%;" />
+<iframe src="<?=$href?>" style="width: 100%; height: 100%;" />
 
 <?php
 
@@ -43,7 +46,7 @@ function section( $countdown )
 	
 	Profiler::enter_section( $alph );
 	
-	$it = mt_rand( 3, 5 );
+	$it = mt_rand( 3, 15 );
 	
 	for ( $i = 0; $i < $it; $i++ )
 	{

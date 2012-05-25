@@ -31,6 +31,11 @@ var Profiler = (function(){
 		
 		// Clear out all tabs
 		$("#tabs *").remove();
+		// TODO: Find a nicer way of resetting each tab
+		
+		$("h1#title a").text(document.referrer)
+			.attr('href',document.referrer);
+		
 		
 		var tab_handles = $("<ul />");
 		$("#tabs").append(tab_handles);
