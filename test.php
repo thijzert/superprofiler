@@ -21,7 +21,7 @@
 
 require_once( "profiler.inc" );
 
-section(4);
+section(6);
 
 $op = Profiler::output();
 $link = "view/profiler.html#" . $op;
@@ -43,6 +43,7 @@ function section( $countdown )
 	global $alph;
 	$activities = array(
 		"fs read",    "fs write",
+		"net",
 		"cache read", "cache write",
 		"xmldom",     "xslt",
 		"db"
@@ -52,11 +53,11 @@ function section( $countdown )
 	
 	Profiler::enter_section( $alph );
 	
-	$it = mt_rand( 3, 15 );
+	$it = mt_rand( 3, 35 );
 	
 	for ( $i = 0; $i < $it; $i++ )
 	{
-		if ( mt_rand( 0, 5 ) < 3 )
+		if ( mt_rand( 0, 31 ) < 3 )
 		{
 			if (( $countdown > 0 ) && ( $alph != 'Z' ))
 			{
@@ -66,9 +67,19 @@ function section( $countdown )
 		}
 		else
 		{
-			$act = round(log(mt_rand(1,exp(6))));
+			$act = round(log(mt_rand(1,exp(7))));
+			
 			Profiler::start( $activities[$act] );
+			
+			// Simulate a load of some kind
 			usleep( mt_rand(100,10000) );
+			
+			// Add notes
+			$nt = mt_rand(-14,4);
+			if ( $nt > 0 )
+				for ( $j = 0; $j < $nt; $j++ )
+					Profiler::annotate( "This is a note for <emph>{$activities[$act]}</emph>" );
+			
 			Profiler::stop();
 		}
 		
