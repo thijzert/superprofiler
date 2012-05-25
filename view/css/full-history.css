@@ -33,6 +33,21 @@
 	padding-bottom: 3px;
 }
 
+#full-history .ellipsis { display: none; }
+#full-history .collapsed .ellipsis { display: inline; }
+#full-history .collapsed .footer { display: none; }
+
+#full-history .collapsed
+{
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	
+	background-image: url(./collapsed.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
 #full-history .durationbox
 {
 	float: right;

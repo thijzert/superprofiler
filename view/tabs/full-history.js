@@ -64,6 +64,8 @@ Profiler.tabs.push({
 					out.append( "Begin section <strong>" + inp.name + "</strong>" );
 				}
 				
+				out.append( $("<span>...</span>").addClass("ellipsis") );
+				
 				var ul = $('<ul></ul>');
 				for ( var i = 0; i < inp.items.length; i++ )
 				{
@@ -74,10 +76,19 @@ Profiler.tabs.push({
 				
 				out.append(ul);
 				
+				if ( !root )
+					out.click(function(){
+						ul.toggle( 200 );
+						out.toggleClass( "collapsed" );
+						
+						return false;
+					});
+				
 				if ( root )
 					out.append( "Total time: <strong>" + inp.dur + "</strong>" );
 				else
-					out.append( "End section <strong>" + inp.name + "</strong>" );
+					out.append( '<span class="footer">End section <strong>' + inp.name + 
+						'</strong></span>' );
 			}
 			else
 			{
