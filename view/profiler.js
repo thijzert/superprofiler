@@ -29,13 +29,21 @@ var Profiler = (function(){
 		profiler_output = JSON.parse( profiler_output );
 		if ( typeof(profiler_output) != 'object' ) return;
 		
+		// Apply all filters to the profiler output
+		for ( var i = 0; i < render_profiler.filters.length; i++ )
+			(render_profiler.filters[i])( profiler_output );
+		
+		
+		// Set the title and referrer link
+		$("h1#title a").text(document.referrer)
+			.attr('href',document.referrer);
+		
 		// Clear out all tabs
 		$("#tabs *").remove();
 		// TODO: Find a nicer way of resetting each tab
 		
-		$("h1#title a").text(document.referrer)
-			.attr('href',document.referrer);
 		
+		// Render each tab
 		
 		var tab_handles = $("<ul />");
 		$("#tabs").append(tab_handles);
@@ -60,10 +68,13 @@ var Profiler = (function(){
 			$("#tabs").append(tab);
 		}
 		
+		// Done. Now, initialize the (jQuery) tab switcher
+		
 		$("#tabs").tabs();
 	};
 	
 	render_profiler.tabs = [];
+	render_profiler.filters = [];
 	
 	
 	return render_profiler;
