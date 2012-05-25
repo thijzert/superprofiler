@@ -21,7 +21,7 @@
 
 require_once( "profiler.inc" );
 
-section(5);
+section(4);
 
 $op = Profiler::output();
 $link = "view/profiler.html#" . $op;
@@ -38,10 +38,16 @@ $href = htmlspecialchars($link);
 <?php
 
 
-
 function section( $countdown )
 {
 	global $alph;
+	$activities = array(
+		"fs read",    "fs write",
+		"cache read", "cache write",
+		"xmldom",     "xslt",
+		"db"
+	);
+	
 	if ( !isset($alph) ) $alph = 'A';
 	
 	Profiler::enter_section( $alph );
@@ -60,8 +66,8 @@ function section( $countdown )
 		}
 		else
 		{
-			$act = round(log10(mt_rand(0,999)));
-			Profiler::start( $act );
+			$act = round(log(mt_rand(1,exp(6))));
+			Profiler::start( $activities[$act] );
 			usleep( mt_rand(100,10000) );
 			Profiler::stop();
 		}
