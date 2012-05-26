@@ -71,6 +71,13 @@
 #full-history .durationbox span.duration { min-width: 60px; }
 #full-history .durationbox span.error    { min-width: 16px; padding: 2px; }
 
+#full-history .durationbox span.error.yarly
+{
+	background-image: url(./error.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 #full-history .durationbox span.warning
 {
 	background-color: #BF0000;

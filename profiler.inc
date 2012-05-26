@@ -170,6 +170,31 @@ class Profiler
 	
 	
 	/**
+	 * Add an error to the current section or activity.
+	 * 
+	 * $error can be anything that can be JSON-encoded, but as a rule of thumb
+	 * let's say that if it's a number, the higher it is, the more severe.
+	 **/
+	public static function error( $error )
+	{
+		$n =& self::$section;
+		if ( self::$activity )
+		{
+			$c = count(self::$section->items);
+			if ( $c > 0 )
+			{
+				$n =& self::$section->items[$c - 1];
+			}
+		}
+		
+		if ( isset($n->error) )
+			self::annotate( "Received an additional error '" . json_encode($error) . "'." );
+		
+		$n->error = $error;
+	}
+	
+	
+	/**
 	 * Replace all absolute start and end times with relative start times and 
 	 * durations.
 	 **/

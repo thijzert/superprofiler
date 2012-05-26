@@ -46,10 +46,10 @@ function section( $countdown )
 {
 	global $alph;
 	$activities = array(
+		"xmldom",     "xslt",
 		"fs read",    "fs write",
 		"net",
 		"cache read", "cache write",
-		"xmldom",     "xslt",
 		"db"
 	);
 	
@@ -71,12 +71,12 @@ function section( $countdown )
 		}
 		else
 		{
-			$act = round(sqrt(mt_rand(0, 7.495*7.495)));
+			$act = floor(sqrt(mt_rand(0, 8*8-1)));
 			
 			Profiler::start( $activities[$act] );
 			
 			// Simulate a load of some kind
-			usleep( mt_rand(100,10000) );
+			usleep( mt_rand(1,10000) );
 			
 			// Add notes
 			$nt = mt_rand(-14,4);
@@ -84,8 +84,14 @@ function section( $countdown )
 				for ( $j = 0; $j < $nt; $j++ )
 					Profiler::annotate( "This is a note for <emph>{$activities[$act]}</emph>" );
 			
+			if ( mt_rand(0,100) == 0 )
+				Profiler::error(mt_rand(0,5000));
+			
 			Profiler::stop();
 		}
+		
+		if ( mt_rand(0,100) == 0 )
+			Profiler::error(mt_rand(0,5000));
 		
 		if ( mt_rand(0,7) < 2 )
 		{

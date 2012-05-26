@@ -76,10 +76,10 @@ Profiler.tabs.push({
 			
 			var erb = $("<span></span>")
 				.addClass("error")
-				.html(error);
+				.html("&#8203;");
 			
 			if ( error )
-				erb.addClass( "yarly" );
+				erb.addClass( "yarly" ).attr('title','Got error ' + error);
 			
 			out.append( 
 				$("<div></div>")
