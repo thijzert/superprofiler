@@ -157,6 +157,12 @@ Profiler.tabs.push({
 		};
 		
 		return (function(i,o) { history( i, o, true ); });
+	})(),
+	"destroy": (function(){
+		return function( tab ){
+			tab.find('*').remove();
+			tab.text('');
+		};
 	})()
 });
 

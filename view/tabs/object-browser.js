@@ -48,6 +48,11 @@ Profiler.tabs.push({
 			}
 		};
 		return ob_b;
+	})(),
+	"destroy": (function(){
+		return function( tab ){
+			tab.find('*').remove();
+		};
 	})()
 });
 

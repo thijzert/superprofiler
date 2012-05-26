@@ -41,11 +41,6 @@ var Profiler = (function(){
 		$("h1#title a").text(document.referrer)
 			.attr('href',document.referrer);
 		
-		// Clear out all tabs
-		$("#tabs *").remove();
-		// TODO: Find a nicer way of resetting each tab
-		
-		
 		// Render each tab
 		
 		var tab_handles = $("<ul />");
@@ -53,27 +48,39 @@ var Profiler = (function(){
 		
 		for ( var i = 0; i < render_profiler.tabs.length; i++ )
 		{
-			var tab_title   = render_profiler.tabs[i].title;
-			var tab_id      = render_profiler.tabs[i].id;
-			var render_tab  = render_profiler.tabs[i].renderer;
+			var ti = render_profiler.tabs[i];
+			
+			var tab_title   = ti.title;
+			var tab_id      = ti.id;
+			var render_tab  = ti.renderer;
 			
 			if ( !tab_title || !tab_id || !render_tab ) continue;
 			
-			var tit = $("<li></li>")
-				.append($("<a></a>")
-					.attr('href','#' + tab_id)
-					.html(tab_title));
-			var tab = $("<div></div>").attr('id',tab_id);
+			if ( ti.dom )
+			{
+				if ( ti.destroy )
+					ti.destroy( ti.dom );
+				ti.dom.remove();
+			}
+			else
+			{
+				ti.dom = $("<div></div>");
+				ti.dom.attr('id',tab_id);
+				
+				tab_handles.append(
+					$("<li></li>")
+						.append($("<a></a>")
+							.attr('href','#' + tab_id)
+							.html(tab_title)));
+			}
 			
-			render_tab( profiler_output, tab );
-			
-			tab_handles.append(tit)
-			$("#tabs").append(tab);
+			render_tab( profiler_output, ti.dom );
+			$("#tabs").append(ti.dom);
 		}
 		
-		// Done. Now, initialize the (jQuery) tab switcher
-		
-		$("#tabs").tabs();
+		// Done. Now, initialize the (jQuery) tab switcher if we hadn't already
+		if ( !$("#tabs").hasClass("ui-tabs") )
+			$("#tabs").tabs();
 	};
 	
 	render_profiler.tabs = [];
