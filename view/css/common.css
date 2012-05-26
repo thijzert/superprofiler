@@ -41,7 +41,7 @@ body
 #wrapper
 {
 	background-color: white;
-	margin: 30px 50px 20px 50px;
+	margin: 30px 50px 15px 50px;
 	/*min-height: 100px;*/
 }
 
@@ -49,4 +49,21 @@ body
 {
 	font-size: 18px;
 	padding: 10px 15px 20px 15px;
+}
+
+#copyright
+{
+	margin-bottom: 20px;
+	color: #777777;
+	font-size: 8px;
+	text-align: center;
+}
+#copyright a
+{
+	color: #AAAAAA !important;
+	text-decoration: none;
+}
+#copyright a:hover
+{
+	text-decoration: underline;
 }
