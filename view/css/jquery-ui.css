@@ -18,11 +18,57 @@
 */
 
 .ui-tabs { position: relative; padding: 0; zoom: 1; }
-.ui-tabs .ui-tabs-nav { margin: 0; padding: 0; }
-.ui-tabs .ui-tabs-nav li { list-style: none; display: inline-block; position: relative; top: 1px; margin: 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; background-color: #EDE7C1; }
+.ui-tabs .ui-tabs-nav
+{
+	margin: 0;
+	padding: 0px 5px;
+}
+
+.ui-tabs .ui-tabs-nav li
+{
+	display: inline-block;
+	list-style: none;
+	
+	position: relative;
+	margin: 0 -1px 0 0;
+	padding: 0;
+	
+	vertical-align: top;
+	border: 1px solid #444;
+	border-bottom: 0;
+	border-radius: 2px 2px 0px 0px;
+	
+	background-color: #F1D4AF;
+	
+	/*-webkit-transition: padding 0.6s; /* Safari and Chrome */
+	/*   -moz-transition: padding 0.6s; /* Firefox 4 */
+	/*    -ms-transition: padding 0.6s; /* Internet Explorer 10+ (hopefully) */
+	/*     -o-transition: padding 0.6s; /* Opera */
+	/*        transition: padding 0.6s; /* Currently, no browser */
+	
+	white-space: nowrap;
+	
+	z-index: 1;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected
+{
+	background-color: #ECE5CE;
+	padding: 0px 3px 3px 3px;
+	margin-bottom: -4px;
+}
+
 .ui-tabs .ui-tabs-nav li a { float: left; padding: 4px 12px; text-decoration: none; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected { background-color: #F6C797; }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: default; }
 .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: default; }
-.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; border-top: 2px solid #888888; }
+.ui-tabs .ui-tabs-panel
+{
+	display: block;
+	padding: 1em 1.4em;
+	margin: 0;
+	
+	background-color: #ECE5CE;
+	
+	border: none;
+	border-top: 3px solid #888888;
+}
 .ui-tabs .ui-tabs-hide { display: none !important; }

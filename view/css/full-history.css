@@ -26,7 +26,7 @@
 	border-left: 2px solid #BBBBBB;
 	padding-left: 9px;
 	
-	background-color: white;
+	/*background-color: white;*/
 }
 #full-history > ul { border-left: none; }
 #full-history ul, #full-history li
@@ -57,7 +57,7 @@
 	font-size: 10px;
 	
 	padding: 3px;
-	margin: -3px;
+	margin: -3px 0 -3px -3px;
 	
 	background-color: white;
 }
@@ -90,4 +90,7 @@
 #full-history li.xmldom { background-color: #E7B7E1; }
 #full-history li.xslt   { background-color: #F0B7B7; }
 #full-history li.db     { background-color: #FFFFB3; }
+
+#full-history li.read  p { color: #0A5500; }
+#full-history li.write p { color: #0010AA; }
 
