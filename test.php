@@ -19,6 +19,11 @@
 	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+?><p>This is a page with simulated load for the profiler.
+	The data you see is random.</p><?php
+
+
+flush();
 require_once( "profiler.inc" );
 
 section( is_numeric($_REQUEST['sections']) ? $_REQUEST['sections'] : 6 );
@@ -27,12 +32,12 @@ $link = "view/profiler.html#" . Profiler::output();
 $href = htmlspecialchars($link);
 
 ?>
-<p>This is a page with simulated load for the profiler.
-	The data you see is random.</p>
 
-<p><a href="<?=$href?>">Click here to open the profiler</a></p>
+<p>Finished generating data. Got <?=strlen(Profiler::output())?> bytes of data.</p>
 
-<iframe src="<?=$href?>" style="width: 100%; height: 100%;" />
+<p><a href="<?=$href?>">Click here to open the development profiler</a></p>
+
+<?=Profiler::write_link()?>
 
 <?php
 

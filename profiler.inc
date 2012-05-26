@@ -19,6 +19,20 @@
 	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+// The page at which the profiler visualisation code is located.
+if ( !defined("PROFILER_LINK_URL") )
+	define( "PROFILER_LINK_URL", 'http://ametheus.github.com/profiler/' );
+
+// The ID for both the link tag, and the window opened.
+if ( !defined("PROFILER_LINK_ID") )
+	define( "PROFILER_LINK_ID", 'Ametheus_Superprofiler' );
+
+// The text to show in the profiler link
+if ( !defined("PROFILER_LINK_TEXT") )
+	define( "PROFILER_LINK_TEXT", 'Open in profiler...' );
+
+
 class Profiler
 {
 	private static $items = array();
@@ -190,6 +204,34 @@ class Profiler
 		
 		self::$output = json_encode( self::$root );
 		return self::$output;
+	}
+	
+	
+	/**
+	 * Returns an ECMAscript code that writes a link to the profiler page.
+	 **/
+	public static function write_link()
+	{
+		$op = str_replace(
+			array(   "\\",   "'",  "\n" ),
+			array( "\\\\", "\\'", "\\n" ),
+			self::output()
+		);
+		
+		$rv = '<script type="text/javascript">';
+		$rv .= '(function(){';
+			$rv .= 'var a = document.createElement("a");';
+			$rv .= 'a.appendChild(document.createTextNode("'.PROFILER_LINK_TEXT.'"));';
+			$rv .= 'a.setAttribute("id","'.PROFILER_LINK_ID.'");';
+			$rv .= 'a.setAttribute("href",\''.PROFILER_LINK_URL.'#'.$op.'\');';
+			
+			$rv .= 'var s = document.getElementsByTagName("script");';
+			$rv .= 's = s[s.length - 1];';
+			$rv .= 's.parentNode.insertBefore( a, s.nextSibling );';
+		$rv .= '})();';
+		$rv .= '</script>';
+		
+		return $rv;
 	}
 }
 Profiler::init();
