@@ -85,6 +85,14 @@ var Profiler = (function(){
 
 
 $(document).ready(function(){
-	Profiler( location.hash.substr(1) );
+	var p = function(){
+		Profiler( location.hash.substr(1) );
+	};
+	
+	// Render the profiler once
+	p();
+	
+	// Bind it to the hashChange event, so this window can be reused.
+	window.onhashchange = p;
 });
 
