@@ -54,16 +54,12 @@ Profiler.tabs.push({
 			if ( sec > 60 )
 				return Math.floor(sec / 60) + "m" +
 					Math.floor(sec % 60) + "s";
-			if ( sec > 5 )
-				return sec.toFixed( 1 ) + "s";
-			if ( sec > 0.5 )
-				return sec.toFixed( 3 ) + "s";
-			if ( sec > 0.0005 )
-				return (sec * 1000).toFixed( 3 ) + "ms";
 			
-			if ( sec > 0.00005 )
-				return Math.round(sec * 1000000) + "µs";
-			return (sec * 1000000).toFixed( 3 ) + "µs";
+			if ( sec > 1 )
+				return sec.toPrecision( 4 ) + "s";
+			if ( sec > 0.001 )
+				return (sec * 1000).toPrecision( 4 ) + "ms";
+			return (sec * 1000000).toPrecision( 4 ) + "µs";
 		};
 		
 		var duration_box = function( out, inp )

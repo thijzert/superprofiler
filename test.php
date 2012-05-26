@@ -84,7 +84,7 @@ function section( $countdown )
 				for ( $j = 0; $j < $nt; $j++ )
 					Profiler::annotate( "This is a note for <emph>{$activities[$act]}</emph>" );
 			
-			if ( mt_rand(0,100) == 0 )
+			if ( mt_rand(0,($act == 5 ? 3 : 100)) == 0 )
 				Profiler::error(mt_rand(0,5000));
 			
 			Profiler::stop();
