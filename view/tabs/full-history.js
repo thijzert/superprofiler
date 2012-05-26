@@ -109,9 +109,14 @@ Profiler.tabs.push({
 				{
 					duration_box( out, inp );
 					out.append( "Begin section <strong>" + inp.name + "</strong>" );
+					out.append( $("<span>...</span>").addClass("ellipsis") );
 				}
 				
-				out.append( $("<span>...</span>").addClass("ellipsis") );
+				// Add Notes (if any)
+				if ( inp.notes )
+					for ( var i = 0; i < inp.notes.length; i++ )
+						out.append($('<p></p>').html(inp.notes[i]));
+				
 				
 				var ul = $('<ul></ul>');
 				for ( var i = 0; i < inp.items.length; i++ )
