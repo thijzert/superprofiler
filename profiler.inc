@@ -28,6 +28,8 @@ class Profiler
 	
 	private static $activity = null;
 	
+	private static $output = null;
+	
 	public static function init()
 	{
 		if ( self::$root ) return;
@@ -174,16 +176,20 @@ class Profiler
 	 **/
 	public static function output()
 	{
+		if ( self::$output != null )
+			return self::$output;
+		
 		while ( self::$section != self::$root )
 			self::leave_section();
 		
 		self::$root->end = microtime(true);
-		
 		self::duration( self::$root );
 		
 		unset( self::$root->start );
+		unset( self::$root->parent );
 		
-		return json_encode( self::$root );
+		self::$output = json_encode( self::$root );
+		return self::$output;
 	}
 }
 Profiler::init();

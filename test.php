@@ -23,8 +23,7 @@ require_once( "profiler.inc" );
 
 section( is_numeric($_REQUEST['sections']) ? $_REQUEST['sections'] : 6 );
 
-$op = Profiler::output();
-$link = "view/profiler.html#" . $op;
+$link = "view/profiler.html#" . Profiler::output();
 $href = htmlspecialchars($link);
 
 ?>
