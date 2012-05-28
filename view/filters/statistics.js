@@ -73,6 +73,7 @@ Profiler.filters.push(function(data){
 		
 		// Standard deviation
 		avg.stddev = Math.sqrt(avg.variance);
+		if ( avg.stddev == 0 ) continue;
 		
 		// The Z-value of each activity
 		for ( j = 0; j < act.length; j++ )
