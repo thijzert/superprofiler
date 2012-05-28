@@ -28,23 +28,25 @@ Profiler.tabs.push({
 	"renderer": (function(){
 		
 		
-		// Flag items that have a higher duration percentile than this
-		var flag_from_percentile = 0.97;
+		// The min/max colour intensity. (high -> white -> barely visible)
+		var colour_min = 200;
+		var colour_max = 0;
 		
 		
-		var perc_opacity = function( perc, scale )
+		// Generate a greyscale colour from a single intensity channel
+		var white = function( intensity )
 		{
-			if ( typeof(perc) == 'undefined' ) return 0.8;
-			if ( typeof(scale) == 'undefined' ) scale = 0.6;
+			intensity = intensity.toFixed(0);
+			if ( intensity < 0 ) intensity = 0;
+			if ( intensity > 255 ) intensity = 255;
 			
-			if ( perc < 0 ) perc = 0;
-			if ( perc > 1 ) perc = 1;
-			
-			return ( 1 - scale ) + ( scale * perc * perc );
+			return "rgb(" + intensity + "," + intensity + "," + intensity + ")";
 		};
 		
 		var format_duration = function( sec )
 		{
+			if ( typeof(sec) == 'undefined' ) return "?";
+			
 			if ( sec < 0 )
 				return "This took " + sec + " seconds for some reason.";
 			
@@ -62,13 +64,37 @@ Profiler.tabs.push({
 			return (sec * 1000000).toPrecision( 4 ) + "µs";
 		};
 		
+		var colourbox_zvalue = function( act )
+		{
+			var rv = $("<span></span>")
+				.addClass('duration')
+				.html(format_duration(act.dur));
+			
+			if ( !('z_value' in act) )
+				return rv;
+			
+			if ( act.z_value < -2 )
+			{
+				rv.css({color: white(colour_min)});
+			}
+			else if ( act.z_value < 2 )
+			{
+				var I = colour_min + (colour_max - colour_min)*((act.z_value + 2) / 4);
+				rv.css({color: white( Math.sqrt(I/255)*255 )});
+			}
+			else
+			{
+				rv.addClass("warning");
+			}
+			
+			return rv;
+		};
+		
 		var duration_box = function( out, inp )
 		{
 			var start = inp.start;
 			var duration = inp.dur;
 			var error = inp.error;
-			
-			var opacity = perc_opacity( inp.duration_percentile, 0.8 );
 			
 			var erb = $("<span></span>")
 				.addClass("error")
@@ -84,12 +110,7 @@ Profiler.tabs.push({
 						$("<span></span>")
 							.addClass("start")
 							.html(start))
-					.append($("<span></span>")
-						.addClass("duration")
-						.html( format_duration( duration ) )
-						.css({ 'opacity': opacity })
-						.toggleClass('warning', 
-							( inp.duration_percentile > flag_from_percentile )))
+					.append(colourbox_zvalue(inp))
 					.append( erb ) );
 		};
 		
@@ -146,9 +167,6 @@ Profiler.tabs.push({
 				duration_box( out, inp );
 				
 				out.addClass( inp.name );
-				// var opacity = perc_opacity( inp.duration_percentile, 0.4 );
-				// out.css({ 'opacity': opacity });
-				
 				out.append($('<p></p>').text(inp.name));
 				
 				if ( inp.notes )
