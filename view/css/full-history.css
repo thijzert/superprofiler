@@ -40,7 +40,7 @@
 #full-history .collapsed .ellipsis { display: inline; }
 #full-history .collapsed .footer { display: none; }
 
-#full-history li p:first-of-type
+#full-history li div.durationbox + p
 {
 	float: left;
 	margin: 0 20px 3px 0;
