@@ -25,6 +25,11 @@ of the profiler like so:
  http://ametheus.github.com/profiler/#{...}
 
 
+Demo
+----
+To see SP in action, check out the [hosted version with some randomly generated data](http://tinyurl.com/cblqony).
+
+
 Requirements
 ---------
 
