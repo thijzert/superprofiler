@@ -61,7 +61,7 @@ Profiler.tabs.push({
 				return sec.toPrecision( 4 ) + "s";
 			if ( sec > 0.001 )
 				return (sec * 1000).toPrecision( 4 ) + "ms";
-			return (sec * 1000000).toPrecision( 4 ) + "&micro;s";
+			return (sec * 1000000).toFixed(0) + "&micro;s";
 		};
 		
 		var colourbox_zvalue = function( act )
