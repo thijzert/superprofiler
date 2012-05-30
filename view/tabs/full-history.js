@@ -140,6 +140,8 @@ Profiler.tabs.push({
 				{
 					var li = $('<li></li>');
 					history( inp.items[i], li, false );
+					if ( li.children().length < 3 )
+						li.append('&#8203;');
 					ul.append(li);
 				}
 				
