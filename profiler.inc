@@ -248,10 +248,10 @@ class Profiler
 			$rv .= 'var a = document.createElement("a");';
 			$rv .= 'a.appendChild(document.createTextNode("'.PROFILER_LINK_TEXT.'"));';
 			$rv .= 'a.setAttribute("id","'.PROFILER_LINK_ID.'");';
-			$rv .= 'a.setAttribute("href",\''.PROFILER_LINK_URL.'#'.$op.'\');'."\n";
+			$rv .= 'a.setAttribute("href",\''.PROFILER_LINK_URL.'#{...}\');'."\n";
 			
 			$rv .= 'a.onclick = (function(){';
-				$rv .= 'window.open( a.href, "'.PROFILER_LINK_ID.'" );';
+				$rv .= 'window.open( \''.PROFILER_LINK_URL.'#'.$op.'\', "'.PROFILER_LINK_ID.'" );';
 				$rv .= 'return false;';
 			$rv .= '});'."\n";
 			

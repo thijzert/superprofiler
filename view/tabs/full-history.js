@@ -61,7 +61,7 @@ Profiler.tabs.push({
 				return sec.toPrecision( 4 ) + "s";
 			if ( sec > 0.001 )
 				return (sec * 1000).toPrecision( 4 ) + "ms";
-			return (sec * 1000000).toPrecision( 4 ) + "µs";
+			return (sec * 1000000).toFixed(0) + "&micro;s";
 		};
 		
 		var colourbox_zvalue = function( act )
@@ -140,6 +140,8 @@ Profiler.tabs.push({
 				{
 					var li = $('<li></li>');
 					history( inp.items[i], li, false );
+					if ( li.children().length < 3 )
+						li.append('&#8203;');
 					ul.append(li);
 				}
 				
@@ -148,7 +150,15 @@ Profiler.tabs.push({
 				if ( !root )
 				{
 					out.click(function(){
-						ul.toggle( 200 );
+						
+						var collapsed = ul.hasClass('collapsed');
+						
+						ul.toggle( 200, function()
+						{
+							if ( !collapsed )
+								ul.find("ul").toggle(false).parent()
+									.toggleClass("collapsed", true);
+						});
 						out.toggleClass( "collapsed" );
 						
 						return false;
