@@ -150,7 +150,15 @@ Profiler.tabs.push({
 				if ( !root )
 				{
 					out.click(function(){
-						ul.toggle( 200 );
+						
+						var collapsed = ul.hasClass('collapsed');
+						
+						ul.toggle( 200, function()
+						{
+							if ( !collapsed )
+								ul.find("ul").toggle(false).parent()
+									.toggleClass("collapsed", true);
+						});
 						out.toggleClass( "collapsed" );
 						
 						return false;
