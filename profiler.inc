@@ -77,8 +77,11 @@ class Profiler
 	
 	/**
 	 * Enter a new section with the name specified. (Sections can be nested.)
+	 * 
+	 * @param $class   If you specify a class name for a section, it will be
+	 *     tallied (like an activity) with likely-classed sections.
 	 **/
-	public static function enter_section( $name )
+	public static function enter_section( $name, $class = false )
 	{
 		self::stop();
 		
@@ -89,6 +92,9 @@ class Profiler
 		$ns->name = $name;
 		$ns->items = array();
 		$ns->start = microtime(true);
+		
+		if ( $class !== false )
+			$ns->class = $class;
 		
 		self::$section->items[] =& $ns;
 		self::$section =& $ns;

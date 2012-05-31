@@ -156,15 +156,22 @@ Profiler.tabs.push({
 						ul.toggle( 200, function()
 						{
 							if ( !collapsed )
-								ul.find("ul").toggle(false).parent()
-									.toggleClass("collapsed", true);
+								ul.find("ul").toggle(false)
+									.parent().toggleClass("collapsed", true);
 						});
 						out.toggleClass( "collapsed" );
 						
 						return false;
 					});
-					ul.click(function(){return false;})
+					ul.click(function(){return false;});
+					
+					if ( "class" in inp )
+					{
+						out.addClass( inp.class ).addClass( "collapsed" );
+						ul.toggle(false);
+					}
 				}
+				
 				
 				if ( root )
 					out.append( "Total time: <strong>" + inp.dur + "</strong>" );
