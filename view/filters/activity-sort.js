@@ -24,6 +24,17 @@ Profiler.filters.push(function( data ){
 	
 	data.activities = {};
 	
+	/**
+	 * Push  val  onto  data.activities[key],  and create it if necessary.
+	 **/
+	var ppush = function( key, val )
+	{
+		if ( !(key in data.activities) )
+			data.activities[key] = [];
+		
+		data.activities[key].push( val );
+	};
+	
 	var extract_from = function( section )
 	{
 		for ( var i = 0; i < section.items.length; i++ )
@@ -32,13 +43,25 @@ Profiler.filters.push(function( data ){
 			if ( it.items )
 			{
 				extract_from( it );
+				
+				if ( it.class )
+				{
+					var lass = "" + it.class;
+					console.log("Found classed section [" + lass + "]");
+					var p = lass.indexOf(" ");
+					
+					if ( p > 0 )
+					{
+						lass = it.class.substr(0,p);
+						console.log("adjusted class [" + lass + "]");
+					}
+					
+					ppush( lass, it );
+				}
 			}
 			else if ( it.name )
 			{
-				if ( ! (it.name in data.activities) )
-					data.activities[it.name] = [];
-				
-				data.activities[it.name].push( it );
+				ppush( it.name, it );
 			}
 		}
 	};
