@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.2
+----
+*	Added section classes
+
 v0.1
 ----
 Initial release. Features included:
