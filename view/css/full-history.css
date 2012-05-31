@@ -56,6 +56,11 @@
 	background-repeat: no-repeat;
 	background-position: left center;
 }
+#full-history .collapsed.slim
+{
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
 
 #full-history .durationbox
 {
