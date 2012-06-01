@@ -35,29 +35,37 @@ Profiler.tabs.push({
 			var totals = [];
 			for ( k in data.averages )
 				if ( data.averages[k].sum > 0 )
-					totals.push({act: k, total: data.averages[k].sum});
+					totals.push({
+						act: k,
+						total: data.averages[k].sum,
+						count: data.averages[k].count
+					});
 			totals.sort(function(a,b){return b.total-a.total;});
 			
 			// Make a list
 			var tul = $("<ul></ul>").addClass('total-time');
 			var sofar = 0;
+			var tot = data.dur > 0 ? data.dur : 1;
 			for ( var i = 0; i < totals.length; i++ )
 			{
+				var tit = totals[i].total;
 				tul.append(
 					$('<li></li>')
 						.append($('<strong></strong>')
-							.html(totals[i].act))
-						.append($('<span></span>')
-							.html(totals[i].total)));
+							.text(totals[i].act))
+						.append('<span class="amt">'+totals[i].count+'</span>')
+						.append('<span class="time">'+tit+'</span>')
+						.append('<span class="perc">'+(100*tit/tot).toFixed(2)+'%</span>'));
 				sofar += totals[i].total;
 			}
 			tul.append(
 				$('<li></li>')
 					.addClass('unaccounted')
 					.append($('<strong></strong>')
-						.html('Unaccounted for'))
-					.append($('<span></span>')
-						.html(data.dur - sofar)));
+						.text('Unaccounted for'))
+					.append('<span class="amt"></span>')
+					.append('<span class="time">'+(tot - sofar)+'</span>')
+					.append('<span class="perc">'+(100-100*sofar/tot).toFixed(2)+'%</span>'));
 			
 			output.append(tul);
 		};
