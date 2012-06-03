@@ -45,6 +45,7 @@ Profiler.tabs.push({
 			// Make a list
 			var tul = $("<ul></ul>").addClass('total-time');
 			var sofar = 0;
+			var count = 0;
 			var tot = data.dur > 0 ? data.dur : 1;
 			for ( var i = 0; i < totals.length; i++ )
 			{
@@ -56,7 +57,9 @@ Profiler.tabs.push({
 						.append('<span class="amt">'+totals[i].count+'</span>')
 						.append('<span class="time">'+tit+'</span>')
 						.append('<span class="perc">'+(100*tit/tot).toFixed(2)+'%</span>'));
+				
 				sofar += totals[i].total;
+				count += totals[i].count;
 			}
 			tul.append(
 				$('<li></li>')
@@ -66,6 +69,14 @@ Profiler.tabs.push({
 					.append('<span class="amt"></span>')
 					.append('<span class="time">'+(tot - sofar)+'</span>')
 					.append('<span class="perc">'+(100-100*sofar/tot).toFixed(2)+'%</span>'));
+			tul.append(
+				$('<li></li>')
+					.addClass('total')
+					.append($('<strong></strong>')
+						.text('Total time'))
+					.append('<span class="amt">'+count+'</span>')
+					.append('<span class="time">'+tot+'</span>')
+					.append('<span class="perc">100%</span>'));
 			
 			output.append(tul);
 		};
