@@ -17,9 +17,33 @@
 	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@import url(./reset.css);
-@import url(./common.css);
-@import url(./jquery-ui.css);
-
-@import url(./overview.css);
-@import url(./full-history.css);
+#overview .total-time li
+{
+	text-align: right;
+	line-height: 120%;
+}
+#overview .total-time li.unaccounted
+{
+	font-weight: bold;
+}
+#overview .total-time li.total
+{
+	padding-top: 10px;
+	font-style: italic;
+}
+#overview .total-time li strong
+{
+	font-size: 120%;
+	line-height: 120%;
+	float: left;
+}
+#overview .total-time li p.tally
+{
+}
+#overview .total-time li span
+{
+	display: inline-block;
+	text-align: right;
+	width: 70px;
+	padding: 1px 7px;
+}
