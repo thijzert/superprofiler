@@ -21,6 +21,11 @@
 {
 	text-align: right;
 	line-height: 120%;
+	margin-right: 20px;
+}
+#overview .total-time li:hover
+{
+	background-color: #E6D18A;
 }
 #overview .total-time li.unaccounted
 {
@@ -46,8 +51,4 @@
 	text-align: right;
 	width: 70px;
 	padding: 1px 7px;
-}
-#overview .total-time li span.perc
-{
-	margin-right: 20px;
 }
