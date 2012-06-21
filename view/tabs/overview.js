@@ -55,7 +55,7 @@ Profiler.tabs.push({
 						.append($('<strong></strong>')
 							.text(totals[i].act))
 						.append('<span class="amt">'+totals[i].count+'</span>')
-						.append('<span class="time">'+tit+'</span>')
+						.append('<span class="time">'+tit.toFixed(3)+'</span>')
 						.append('<span class="perc">'+(100*tit/tot).toFixed(2)+'%</span>'));
 				
 				sofar += totals[i].total;
@@ -67,7 +67,7 @@ Profiler.tabs.push({
 					.append($('<strong></strong>')
 						.text('Unaccounted for'))
 					.append('<span class="amt"></span>')
-					.append('<span class="time">'+(tot - sofar)+'</span>')
+					.append('<span class="time">'+(tot - sofar).toFixed(3)+'</span>')
 					.append('<span class="perc">'+(100-100*sofar/tot).toFixed(2)+'%</span>'));
 			tul.append(
 				$('<li></li>')
@@ -75,7 +75,7 @@ Profiler.tabs.push({
 					.append($('<strong></strong>')
 						.text('Total time'))
 					.append('<span class="amt">'+count+'</span>')
-					.append('<span class="time">'+tot+'</span>')
+					.append('<span class="time">'+tot.toFixed(3)+'</span>')
 					.append('<span class="perc">100%</span>'));
 			
 			output.append(tul);
