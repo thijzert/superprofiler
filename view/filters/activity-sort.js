@@ -47,13 +47,13 @@ Profiler.filters.push(function( data ){
 				if ( it.class )
 				{
 					var lass = "" + it.class;
-					console.log("Found classed section [" + lass + "]");
+					//console.log("Found classed section [" + lass + "]");
 					var p = lass.indexOf(" ");
 					
 					if ( p > 0 )
 					{
 						lass = it.class.substr(0,p);
-						console.log("adjusted class [" + lass + "]");
+						//console.log("adjusted class [" + lass + "]");
 					}
 					
 					ppush( lass, it );
