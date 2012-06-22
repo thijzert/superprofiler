@@ -40,12 +40,6 @@
 #full-history .collapsed .ellipsis { display: inline; }
 #full-history .collapsed .footer { display: none; }
 
-#full-history li div.durationbox + p
-{
-	float: left;
-	margin: 0 20px 3px 0;
-}
-
 #full-history .collapsed
 {
 	padding-left: 20px;
@@ -61,47 +55,4 @@
 	padding-top: 2px;
 	padding-bottom: 3px;
 }
-
-#full-history .durationbox
-{
-	float: right;
-	font-size: 10px;
-	
-	padding: 3px;
-	margin: -3px 0 -3px -3px;
-	
-	background-color: white;
-}
-
-#full-history .durationbox span
-{
-	display: inline-block;
-	padding: 2px 8px;
-}
-#full-history .durationbox span.start    { min-width: 60px; }
-#full-history .durationbox span.duration { min-width: 60px; }
-#full-history .durationbox span.error    { min-width: 16px; padding: 2px; }
-
-#full-history .durationbox span.error.yarly
-{
-	background-image: url(./error.png);
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-#full-history .durationbox span.warning
-{
-	font-weight: bold;
-}
-
-
-#full-history li.fs     { background-color: #BAC5E8; }
-#full-history li.net    { background-color: #BCE6B7; }
-#full-history li.cache  { background-color: #B9DEDC; }
-#full-history li.xmldom { background-color: #E7B7E1; }
-#full-history li.xslt   { background-color: #F0B7B7; }
-#full-history li.db     { background-color: #FFFFB3; }
-
-#full-history li.read  p { color: #0A5500; }
-#full-history li.write p { color: #0010AA; }
 

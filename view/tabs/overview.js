@@ -103,7 +103,7 @@ Profiler.tabs.push({
 			}
 			rv.sort(function(a,b){return b.dur - a.dur;});
 			
-			var wtsl = $("<ul></ul>").addClass('whats-taking-so-long');
+			var wtsl = $("<ul></ul>").addClass('whats-taking-so-long activity-list');
 			for ( var i = 0; i < rv.length; i++ )
 			{
 				var li = $("<li><p>"+rv[i].name+"</p></li>").addClass(rv[i].name);

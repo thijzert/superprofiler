@@ -30,7 +30,10 @@ Profiler.tabs.push({
 		// Shorthands
 		var duration_box = Profiler.Util.duration_box;
 		
-		var history = function( inp, out, root ){
+		var history = function( inp, out, root )
+		{
+			if ( root )
+				out.addClass( "activity-list" );
 			
 			if ( inp.items )
 			{

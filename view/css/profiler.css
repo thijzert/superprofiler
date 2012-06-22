@@ -21,5 +21,7 @@
 @import url(./common.css);
 @import url(./jquery-ui.css);
 
+@import url(./duration.css);
+
 @import url(./overview.css);
 @import url(./full-history.css);
