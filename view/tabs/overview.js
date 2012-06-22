@@ -29,6 +29,54 @@ Profiler.tabs.push({
 		
 		var ov_t = function( data, output )
 		{
+			// Find the 5 most time-consuming anomalies.
+			//
+			// That is, find all items that
+			//   1)  have a z-value of 1.5 or more, and
+			//   2)  make up more than 1% of the total time.
+			// Display the 5 with the longest duration.
+			
+			output.append($("<h3>What's taking so long?<h3>"));
+			
+			var threshold = Math.abs(data.dur) * 0.01;
+			
+			var rv = [];
+			for ( i in data.sorted )
+			{
+				var acts = data.sorted[i];
+				var l = acts.length < 5 ? acts.length : 5;
+				
+				for ( var j = 1; j <= l; j++ )
+				{
+					var it = acts[acts.length - j];
+					if ( it.z_value >= 1.5 || acts.length <= 5 )
+						rv.push(it);
+				}
+			}
+			rv.sort(function(a,b){return b.dur - a.dur;});
+			
+			var wtsl = $("<ul></ul>").addClass('whats-taking-so-long activity-list');
+			var max = Math.min( 5, rv.length );
+			for ( var i = 0; i < max; i++ )
+			{
+				if ( rv[i].dur < threshold ) continue;
+				
+				var li = $("<li></li>").addClass(rv[i].name);
+				Profiler.Util.duration_box( li, rv[i] );
+				li.append("<p>"+rv[i].name+"</p>");
+				
+				if ( rv[i].notes && rv[i].notes.length > 0 )
+					for ( var j = 0; j < rv[i].notes.length; j++ )
+						li.append($("<p></p>").html(rv[i].notes[j]));
+				else
+					li.append("&#8302;");
+				
+				wtsl.append(li);
+			}
+			
+			output.append( wtsl );
+			
+			
 			output.append($("<h3>Total time<h3>"));
 			
 			// Take the total time each activity type cost, and sort in reverse
@@ -79,54 +127,6 @@ Profiler.tabs.push({
 					.append('<span class="perc">100%</span>'));
 			
 			output.append(tul);
-			
-			
-			// Find the 5 most time-consuming anomalies.
-			//
-			// That is, find all items that
-			//   1)  have a z-value of 1.5 or more, and
-			//   2)  make up more than 1% of the total time.
-			// Display the 5 with the longest duration.
-			
-			output.append($("<h3>What's taking so long?<h3>"));
-			
-			var threshold = Math.abs(data.dur) * 0.01;
-			
-			var rv = [];
-			for ( i in data.sorted )
-			{
-				var acts = data.sorted[i];
-				var l = acts.length < 5 ? acts.length : 5;
-				
-				for ( var j = 1; j <= l; j++ )
-				{
-					var it = acts[acts.length - j];
-					if ( it.z_value >= 1.5 || acts.length <= 5 )
-						rv.push(it);
-				}
-			}
-			rv.sort(function(a,b){return b.dur - a.dur;});
-			
-			var wtsl = $("<ul></ul>").addClass('whats-taking-so-long activity-list');
-			var max = Math.min( 5, rv.length );
-			for ( var i = 0; i < max; i++ )
-			{
-				if ( rv[i].dur < threshold ) continue;
-				
-				var li = $("<li></li>").addClass(rv[i].name);
-				Profiler.Util.duration_box( li, rv[i] );
-				li.append("<p>"+rv[i].name+"</p>");
-				
-				if ( rv[i].notes && rv[i].notes.length > 0 )
-					for ( var j = 0; j < rv[i].notes.length; j++ )
-						li.append($("<p></p>").html(rv[i].notes[j]));
-				else
-					li.append("&#8302;");
-				
-				wtsl.append(li);
-			}
-			
-			output.append( wtsl );
 		};
 		return ov_t;
 	})(),
