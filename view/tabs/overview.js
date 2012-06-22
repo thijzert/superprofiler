@@ -106,7 +106,8 @@ Profiler.tabs.push({
 			var wtsl = $("<ul></ul>").addClass('whats-taking-so-long');
 			for ( var i = 0; i < rv.length; i++ )
 			{
-				var li = $("<li><p>"+rv[i].name+"</p></li>");
+				var li = $("<li><p>"+rv[i].name+"</p></li>").addClass(rv[i].name);
+				Profiler.Util.duration_box( li, rv[i] );
 				if ( rv[i].notes )
 					for ( var j = 0; j < rv[i].notes.length; j++ )
 						li.append($("<p></p>").text(rv[i].notes[j]));
