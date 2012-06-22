@@ -1,0 +1,80 @@
+
+/*
+	Copyright (C) 2012 Thijs van Dijk
+	
+	This file is part of Superprofiler.
+	
+	Superprofiler is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Superprofiler is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+
+.durationbox
+{
+	float: right;
+	font-size: 10px;
+	
+	padding: 3px;
+	margin: -3px 0 -3px -3px;
+	
+	background-color: white;
+}
+
+.durationbox span
+{
+	display: inline-block;
+	padding: 2px 8px;
+}
+.durationbox span.start    { min-width: 60px; }
+.durationbox span.duration { min-width: 60px; }
+.durationbox span.error    { min-width: 16px; padding: 2px; }
+
+.durationbox span.error.yarly
+{
+	background-image: url(./error.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.durationbox span.warning
+{
+	font-weight: bold;
+}
+
+
+
+.activity-list li
+{
+	clear: both;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.activity-list li.fs     { background-color: #BAC5E8; }
+.activity-list li.net    { background-color: #BCE6B7; }
+.activity-list li.cache  { background-color: #B9DEDC; }
+.activity-list li.xmldom { background-color: #E7B7E1; }
+.activity-list li.xslt   { background-color: #F0B7B7; }
+.activity-list li.db     { background-color: #FFFFB3; }
+
+.activity-list li.read  p { color: #0A5500; }
+.activity-list li.write p { color: #0010AA; }
+
+
+.activity-list li div.durationbox + p
+{
+	float: left;
+	margin: 0 20px 3px 0;
+}
+

@@ -86,6 +86,7 @@ var Profiler = (function(){
 	render_profiler.tabs = [];
 	render_profiler.filters = [];
 	
+	render_profiler.Util = {};
 	
 	return render_profiler;
 })();

@@ -34,7 +34,7 @@ Profiler.filters.push(function(data){
 	
 	var add_perc = function( acts )
 	{
-		if ( acts.length < 2 ) return;
+		if ( acts.length < 2 ) return acts;
 		
 		// Make a shallow copy of acts we can sort freely
 		var sacts = [];
@@ -47,9 +47,13 @@ Profiler.filters.push(function(data){
 		var max = sacts.length - 1;
 		for ( var i = 0; i <= max; i++ )
 			sacts[i].duration_percentile = i / max;
+		
+		return sacts;
 	};
 	
+	data.sorted = {};
+	
 	for ( i in data.activities )
-		add_perc( data.activities[i] );
+		data.sorted[i] = add_perc( data.activities[i] );
 });
 
