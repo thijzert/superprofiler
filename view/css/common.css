@@ -37,6 +37,11 @@ body
 	background-attachment: fixed;
 }
 
+tt
+{
+	font-family: "Anonymous Pro", fixed;
+}
+
 
 #wrapper
 {
