@@ -1,0 +1,58 @@
+
+/*
+	Copyright (C) 2012 Thijs van Dijk
+	
+	This file is part of Superprofiler.
+	
+	Superprofiler is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Superprofiler is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Superprofiler.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+
+#full-history ul
+{
+	margin-left: 5px;
+	border-left: 2px solid #BBBBBB;
+	padding-left: 9px;
+	
+	/*background-color: white;*/
+}
+#full-history > ul { border-left: none; }
+#full-history ul, #full-history li
+{
+	clear: both;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+#full-history .ellipsis { display: none; }
+#full-history .collapsed .ellipsis { display: inline; }
+#full-history .collapsed .footer { display: none; }
+
+#full-history .collapsed
+{
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	
+	background-image: url(./collapsed.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#full-history .collapsed.slim
+{
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
+
