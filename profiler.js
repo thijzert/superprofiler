@@ -30,7 +30,14 @@ var Profiler = (function(){
 		{
 			profiler_output = JSON.parse( profiler_output );
 		}
-		catch (e) { return; }
+		catch (e)
+		{
+			try
+			{
+				profiler_output = JSON.parse( unescape(profiler_output) );
+			}
+			catch (e) { return; }
+		}
 		
 		// Apply all filters to the profiler output
 		for ( var i = 0; i < render_profiler.filters.length; i++ )
