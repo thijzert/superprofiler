@@ -22,7 +22,7 @@
 
 // The page at which the profiler visualisation code is located.
 if ( !defined("PROFILER_LINK_URL") )
-	define( "PROFILER_LINK_URL", 'http://ametheus.github.com/profiler/' );
+	define( "PROFILER_LINK_URL", 'http://thijzert.github.io/superprofiler/' );
 
 // The ID for both the link tag, and the window opened.
 if ( !defined("PROFILER_LINK_ID") )
